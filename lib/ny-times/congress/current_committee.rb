@@ -31,6 +31,10 @@ module NYTimes
         # Need to implement
       end
 
+      def fully_loaded
+        true
+      end
+
       def prepare_arguments(hash)
         args = hash.dup
         @id = args['id']
