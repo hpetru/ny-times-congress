@@ -28,6 +28,15 @@ module NYTimes
         response = Base.invoke(api_path)['results']
         fetch_current_members(response)
       end
+
+      def current_members
+        fetch_current_members(Base.invoke("#{api_path}/members.json")['results'].first['members'])
+      end
+
+      def current_committees
+        fetch_current_committees(Base.invoke("#{api_path}/committees.json")["results"].first["committees"])
+      end
+
       
       def roll_call_vote(session_number, roll_call_number, params = {})
         results = Base.invoke("#{api_path}/sessions/#{session_number}/votes/#{roll_call_number}.json")['results']['votes']
@@ -67,6 +76,13 @@ module NYTimes
     			hash[member['id']] = CurrentMember.new(member)
     			hash
     		end
+      end
+
+      def fetch_current_committees(results)
+        results.inject({}) do |hash, committee|
+          hash[committee['id']] = CurrentCommittee.new(committee)
+          hash
+        end
       end
       
       def fetch_members_by_type(results)

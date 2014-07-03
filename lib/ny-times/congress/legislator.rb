@@ -9,7 +9,7 @@ module NYTimes
         :roles_for   =>  [:roles],
         :appearances_for => [:appearances],
         :integer_for =>  [:govtrack_id, :district, :seniority, :cspan_id, :next_election, :thomas_id],
-        :string_for  =>  [:url, :state, :gender, :first_name, :middle_name, :last_name, :name, :current_party, :missed_votes_pct, :votes_with_party_pct, :twitter_id, :youtube_id, :facebook_account, :party, :twitter_account ] 
+        :string_for  =>  [:url, :state, :gender, :first_name, :middle_name, :last_name, :name, :current_party, :missed_votes_pct, :votes_with_party_pct, :twitter_id, :youtube_id, :facebook_account, :twitter_account ] 
       }
       ATTRIBUTES = ATTRIBUTE_MAP.values.flatten
       ATTRIBUTES.each {|attribute| define_lazy_reader_for_attribute_named(attribute) }
